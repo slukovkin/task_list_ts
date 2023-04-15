@@ -41,3 +41,16 @@ button {
   margin: 5px;
   padding: 5px;
 }
+
+ul {
+  margin-top: 10px;
+  padding: 0;
+  border: 2px solid #cbc6c9;
+  box-shadow: 2px 2px 5px #cbc6c9;
+}
+
+li {
+  padding: 0 10px;
+}
+
+li:nth-child(odd) { background-color: #cbc6c9; } 

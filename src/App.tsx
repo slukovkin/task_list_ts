@@ -20,23 +20,25 @@ function App() {
   }
 
   function addTask(value: string) {
-    const newTask: TaskType = {
-      id: v4(),
-      title: value,
-      isDone: false,
+    if (value.trim() !== "") {
+      const newTask: TaskType = {
+        id: v4(),
+        title: value,
+        isDone: false,
+      }
+      setTasks([newTask, ...tasks])
     }
-    setTasks([newTask, ...tasks])
   }
-  function changeChecked(id: string) {
-    let newArrayTasks = [...tasks]
+  function changeTaskStatus(id: string) {
+    let tempArrayTasks = [...tasks]
     if (id) {
       // eslint-disable-next-line array-callback-return
-      newArrayTasks.find((task) => {
+      tempArrayTasks.find((task) => {
         if (task.id === id) {
           task.isDone = !task.isDone
         }
       })
-      setTasks(newArrayTasks)
+      setTasks(tempArrayTasks)
     }
   }
 
@@ -62,7 +64,7 @@ function App() {
           removeTask={removeTask}
           changeFilter={changeFilter}
           addTask={addTask}
-          changeChecked={changeChecked}
+          changeTaskStatus={changeTaskStatus}
         />
       )}
     </div>
