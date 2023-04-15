@@ -11,6 +11,8 @@ export type TaskType = {
 type PropsType = {
   title: string
   tasks: TaskType[]
+  activeButton: boolean
+  filter?: FilterValueType
   removeTask: (id: string) => void
   changeFilter: (value: FilterValueType) => void
   addTask: (value: string) => void
@@ -20,10 +22,12 @@ type PropsType = {
 export function TodoList({
   title,
   tasks,
+  activeButton,
   removeTask,
   changeFilter,
   addTask,
   changeTaskStatus,
+  filter,
 }: PropsType) {
   const [value, setValue] = useState("")
   const [error, setError] = useState<string | null>(null)
@@ -69,7 +73,7 @@ export function TodoList({
           onKeyDown={onPressEnterHandler}
           onFocus={onFocus}
         />
-        <ButtonUI title='+' onclick={addNewTask} />
+        <ButtonUI title='Create' onclick={addNewTask} color='btn-success' />
       </div>
 
       {error && (
@@ -85,43 +89,62 @@ export function TodoList({
             changeTaskStatus(task.id)
           }
           return (
-            <li key={task.id}>
-              <input
-                type='checkbox'
-                checked={task.isDone}
-                onChange={onChangeCheckedHandler}
-              />
-              <span>{task.title}</span>
-              <button
-                onClick={onRemoveHandler}
-                className='btn btn-sm btn-danger py-1 px-3'
+            <label htmlFor={task.id}>
+              <li
+                key={task.id}
+                className={
+                  task.isDone ? "text-white text-opacity-25 bg-secondary" : ""
+                }
               >
-                x
-              </button>
-            </li>
+                <input
+                  type='checkbox'
+                  id={task.id}
+                  checked={task.isDone}
+                  onChange={onChangeCheckedHandler}
+                />
+                <h5>{task.title}</h5>
+                <ButtonUI
+                  color='btn-danger py-1 px-3'
+                  onclick={onRemoveHandler}
+                  title='x'
+                />
+              </li>
+            </label>
           )
         })}
       </ul>
 
       <div className='title mt-2 d-flex justify-content-center align-center'>
-        <button
-          className='btn btn-sm btn-primary px-5'
-          onClick={onAllClickHandler}
-        >
-          All
-        </button>
-        <button
-          className='btn btn-sm btn-primary px-5'
-          onClick={onActiveClickHandler}
-        >
-          Active
-        </button>
-        <button
-          className='btn btn-sm btn-primary px-3'
-          onClick={onCompletedClickHandler}
-        >
-          Completed
-        </button>
+        <ButtonUI
+          color={
+            filter === "all"
+              ? "btn btn-sm px-5 btn-success"
+              : "btn btn-sm btn-outline-primary px-5"
+          }
+          onclick={onAllClickHandler}
+          activeButton={activeButton}
+          title='All'
+        />
+        <ButtonUI
+          color={
+            filter === "active"
+              ? "btn btn-sm px-5 btn-success"
+              : "btn btn-sm btn-outline-primary px-5"
+          }
+          onclick={onActiveClickHandler}
+          activeButton={activeButton}
+          title='Active'
+        />
+        <ButtonUI
+          color={
+            filter === "completed"
+              ? "btn btn-sm px-5 btn-success"
+              : "btn btn-sm btn-outline-primary px-5"
+          }
+          onclick={onCompletedClickHandler}
+          activeButton={activeButton}
+          title='Completed'
+        />
       </div>
     </div>
   )
