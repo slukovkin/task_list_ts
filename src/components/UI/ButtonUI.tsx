@@ -1,10 +1,10 @@
 import React from "react"
 
 interface IButtonProps {
-  title?: string
+  title: string
   color: ButtonColorType
   onclick: () => void
-  activeButton?: boolean
+  activeButton: boolean
 }
 
 export type ButtonColorType =

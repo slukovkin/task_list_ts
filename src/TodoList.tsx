@@ -73,7 +73,7 @@ export function TodoList({
           onKeyDown={onPressEnterHandler}
           onFocus={onFocus}
         />
-        <ButtonUI title='Create' onclick={addNewTask} color='btn-success' />
+        <ButtonUI title='Create' onclick={addNewTask} color='btn-success' activeButton={false} />
       </div>
 
       {error && (
@@ -107,6 +107,7 @@ export function TodoList({
                   color='btn-danger py-1 px-3'
                   onclick={onRemoveHandler}
                   title='x'
+                  activeButton={false}
                 />
               </li>
             </label>

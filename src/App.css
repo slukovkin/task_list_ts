@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 html {
-  width: 1440px;
+  padding: 10px;
   margin: 0 auto;
 }
 
@@ -12,8 +12,10 @@ html {
   padding: 30px;
   /* display: flex; */
   /* justify-content: center; */
+  border: 1px solid #cbc6c9;
+  box-shadow: 2px 2px 5px #cbc6c9;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 .App > div {
