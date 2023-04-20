@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./App.css"
-import { TodoList } from "./TodoList"
-import { TaskType } from "./TodoList"
+import { TodoList } from "./components/TodoList"
+import { TaskType } from "./components/TodoList"
 // import { initTasks } from "./data"
 import { v4 } from "uuid"
 
@@ -60,7 +60,7 @@ function App() {
   }, [tasks])
 
   return (
-    <div className='App'>
+    <div className='App rounded'>
       {!tasks.length ? (
         <TodoList
           title='Task list is empty'

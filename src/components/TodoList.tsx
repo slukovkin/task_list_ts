@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { FilterValueType } from "./App"
-import { ButtonUI } from "./components/UI/ButtonUI"
+import { FilterValueType } from "../App"
+import { ButtonUI } from "./UI/ButtonUI"
 
 export type TaskType = {
   id: string
@@ -67,20 +67,29 @@ export function TodoList({
       <div className='d-flex item-center'>
         <input
           type='text'
-          className={error ? "w-100 px-3 border-danger" : "w-100 px-3"}
+          className={
+            error
+              ? "w-100 px-3 border-danger form-control"
+              : "w-100 px-3 form-control"
+          }
           value={value}
           onChange={onChangeTitleHandler}
           onKeyDown={onPressEnterHandler}
           onFocus={onFocus}
         />
-        <ButtonUI title='Create' onclick={addNewTask} color='btn-success' activeButton={false} />
+        <ButtonUI
+          title='Create'
+          onclick={addNewTask}
+          color='btn-success'
+          activeButton={false}
+        />
       </div>
 
       {error && (
         <div className='d-flex justify-content-center text-danger'>{error}</div>
       )}
 
-      <ul>
+      <ul className='rounded'>
         {tasks.map((task) => {
           const onRemoveHandler = () => {
             removeTask(task.id)
@@ -93,7 +102,9 @@ export function TodoList({
               <li
                 key={task.id}
                 className={
-                  task.isDone ? "text-white text-opacity-25 bg-secondary" : ""
+                  task.isDone
+                    ? "text-white text-opacity-25 bg-secondary rounded"
+                    : "rounded"
                 }
               >
                 <input

@@ -1,3 +1,3 @@
 export function InputUI() {
-  return <input type='text' />
+  return <input type='text' className='form-control' />
 }

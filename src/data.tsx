@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { TaskType } from "./TodoList";
+import { TaskType } from "./components/TodoList";
 
 export let initTasks: TaskType[] = [
   { id: v4(), title: "CSS", isDone: true },
